@@ -1,9 +1,17 @@
 import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import counterStore from './counter-store';
+import Counter from './Counter.jsx';
 
-const greeting = () => (
+const store = createStore(counterStore.reducer);
+
+const App = () => (
   <div>
-    <h1>Hello from react!</h1>
+    <Provider store={store}>
+      <Counter />
+    </Provider>
   </div>
 );
 
-export default greeting;
+export default App;
