@@ -1,7 +1,7 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import bindActionCreators from './multi-reducer/bind-action-creators';
 import store from './counter-store';
 
 const Counter = ({ count, actions: { increment, decrement } }) => (<div>
@@ -16,10 +16,10 @@ Counter.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = state => ({ count: store.selectors.count(state) });
+const mapStateToProps = (state, { id }) => ({ count: store.selectors.count(state, id) });
 
 const mapDispatchToProps =
-  dispatch => ({ actions: bindActionCreators(store.actionCreators, dispatch) });
+  (dispatch, { id }) => ({ actions: bindActionCreators(store.actionCreators, dispatch, id) });
 
 const CounterContainer = connect(mapStateToProps, mapDispatchToProps)(Counter);
 

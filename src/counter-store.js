@@ -9,7 +9,7 @@ const actionCreators = {
 };
 
 const selectors = {
-  count: state => state,
+  count: (state, id) => state[id] || 0,
 };
 
 const counter = (state = 0, action) => {

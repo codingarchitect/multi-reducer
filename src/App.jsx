@@ -1,17 +1,18 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import counterStore from './counter-store';
+import multiCounterStore from './multi-counter-store';
 import Counter from './Counter.jsx';
 
-const store = createStore(counterStore.reducer);
+const store = createStore(multiCounterStore.reducer);
 
 const App = () => (
-  <div>
-    <Provider store={store}>
-      <Counter />
-    </Provider>
-  </div>
+  <Provider store={store}>
+    <div>
+      <Counter id="counter1" />
+      <Counter id="counter2" />
+    </div>
+  </Provider>
 );
 
 export default App;
