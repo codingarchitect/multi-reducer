@@ -15,8 +15,6 @@ Counter.propTypes = {
   }).isRequired,
 };
 
-const propSelectors = { count: store.selectors.count };
-
-const MultiCounterContainer = multiConnect(propSelectors, store.actionCreators)(Counter);
+const MultiCounterContainer = multiConnect(store.selectors, store.actionCreators)(Counter);
 
 export default MultiCounterContainer;
