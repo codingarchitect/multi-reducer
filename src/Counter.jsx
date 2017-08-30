@@ -1,8 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import bindActionCreators from './multi-reducer/bind-action-creators';
-import store from './multi-counter-store';
+import store from './counter-store';
+import multiConnect from './multi-reducer/multi-connect';
 
 const Counter = ({ count, actions: { increment, decrement } }) => (<div>
   <button onClick={increment}>+</button>{ count }<button onClick={decrement}>-</button>
@@ -16,11 +15,8 @@ Counter.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = (state, { id }) => ({ count: store.selectors.count(state, id) });
+const propSelectors = { count: store.selectors.count };
 
-const mapDispatchToProps =
-  (dispatch, { id }) => ({ actions: bindActionCreators(store.actionCreators, dispatch, id) });
-
-const MultiCounterContainer = connect(mapStateToProps, mapDispatchToProps)(Counter);
+const MultiCounterContainer = multiConnect(propSelectors, store.actionCreators)(Counter);
 
 export default MultiCounterContainer;
