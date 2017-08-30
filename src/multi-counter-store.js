@@ -1,9 +1,15 @@
 import counterStore from './counter-store';
 
-const { actions, reducer } = counterStore;
+const {
+  actions,
+  actionCreators,
+  reducer,
+  selectors: counterSelectors,
+  initialState,
+} = counterStore;
 
 const selectors = {
-  count: (state, id) => state[id] || 0,
+  count: (state, id) => counterSelectors.count(state[id]) || initialState,
 };
 
 const app = (state = {}, action) => {
@@ -22,6 +28,7 @@ const app = (state = {}, action) => {
 
 export default {
   actions,
+  actionCreators,
   selectors,
   reducer: app,
 };

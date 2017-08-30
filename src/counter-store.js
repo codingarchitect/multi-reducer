@@ -9,10 +9,12 @@ const actionCreators = {
 };
 
 const selectors = {
-  count: (state, id) => state[id] || 0,
+  count: state => state,
 };
 
-const counter = (state = 0, action) => {
+const initialState = 0;
+
+const counter = (state = initialState, action) => {
   switch (action.type) {
     case actions.increment:
       return state + 1;
@@ -28,5 +30,6 @@ export default {
   actions,
   actionCreators,
   selectors,
+  initialState,
   reducer: counter,
 };
