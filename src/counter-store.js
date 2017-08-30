@@ -8,18 +8,30 @@ const actionCreators = {
   decrement: () => ({ type: actions.decrement }),
 };
 
-const initialState = 0;
+const initialState = {
+  counter: {
+    count: 0,
+  },
+};
 
 const selectors = {
-  count: state => state || initialState,
+  count: state => (state ? state.counter.count : initialState.counter.count),
 };
 
 const counter = (state = initialState, action) => {
   switch (action.type) {
     case actions.increment:
-      return state + 1;
+      return {
+        counter: {
+          count: state.counter.count + 1,
+        },
+      };
     case actions.decrement:
-      return state - 1;
+      return {
+        counter: {
+          count: state.counter.count - 1,
+        },
+      };
     default:
       break;
   }

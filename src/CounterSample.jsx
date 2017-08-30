@@ -8,7 +8,7 @@ import wrapActionCreators from './multi-instance/wrap-action-creators';
 import counterStore from './counter-store';
 import Counter from './Counter.jsx';
 
-const multiCounterStore = makeMultiInstanceStore(counterStore);
+const multiCounterStore = makeMultiInstanceStore(counterStore, 'ui.widgets.counter');
 
 const counterIds = {
   counter1: 'counter1',
