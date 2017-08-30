@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import store from './counter-store';
-import multiConnect from './multi-reducer/multi-connect';
+import multiConnect from './multi-instance/multi-connect';
 
 const Counter = ({ count, actions: { increment, decrement } }) => (<div>
   <button onClick={increment}>+</button>{ count }<button onClick={decrement}>-</button>

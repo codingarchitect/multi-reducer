@@ -1,6 +1,6 @@
 /* eslint fp/no-rest-parameters: 0 */
 const wrapActionCreator = (actionCreator, id) =>
-  (...args) => ({ ...actionCreator(...args), id });
+  (...args) => ({ ...actionCreator(...args), meta: { id } });
 
 const wrapActionCreators = (actionCreators, id) => ((typeof actionCreators === 'function') ?
   wrapActionCreator(actionCreators, id) :
